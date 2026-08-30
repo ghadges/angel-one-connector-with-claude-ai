@@ -1,7 +1,7 @@
 {
   "manifest_version": "0.2",
   "name": "angel-one",
-  "display_name": "Angel One Connector with Claude",
+  "display_name": "Angel One Connector with Claude AI",
   "version": "1.0.0",
   "description": "Trading MCP — live prices, portfolio, holdings and charts from your Angel One account, in plain English.",
   "long_description": "Connects Claude Desktop to your Angel One trading account through Angel One's official SmartAPI. Ask for live prices, your holdings and positions, historical candles, position sizing and rule-based screens by typing plain English.\n\nClaude will not place trades on your behalf. Order limits ship at 1 share and Rs 1,000 and are enforced by the server; raise them only deliberately in settings.\n\nRequires an Angel One account, a SmartAPI app with your public IP allowlisted, and TOTP enabled. Not affiliated with or endorsed by Angel One or Anthropic.",

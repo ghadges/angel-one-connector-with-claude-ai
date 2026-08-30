@@ -1,4 +1,4 @@
-# Angel One Connector with Claude
+# Angel One Connector with Claude AI
 
 **Trading MCP** — live prices, portfolio, holdings and charts from your Angel One account, in
 plain English.
