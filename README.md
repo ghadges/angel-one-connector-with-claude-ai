@@ -9,9 +9,18 @@ Published by **TryTech**. Not affiliated with or endorsed by Angel One or Anthro
 
 ## Install
 
-Double-click `angel-one-connector.mcpb`, or drag it into the Claude Desktop window. Claude
-Desktop shows a settings form. Fill in four values and you're done — no config file, no
-terminal, no Node.js install.
+In Claude Desktop: **Settings → Extensions → Advanced settings → Install Extension…** and pick
+`angel-one-connector.mcpb`.
+
+Claude Desktop then shows a settings form. Fill in four values and you're done — no config file,
+no terminal, no Node.js install.
+
+> **Why not just double-click it?** On some installs that works. On the **Microsoft Store**
+> build of Claude Desktop it does not — that package declares no file associations, so Windows
+> shows an *"Select an app to open this .mcpb file"* dialog instead. **Do not pick an app from
+> that list**, and especially do not tick *Always*. Cancel it and use the Settings route above,
+> which works on every install. Dragging the file into the Claude Desktop window is also worth
+> a try.
 
 | Field | Where it comes from |
 |---|---|
