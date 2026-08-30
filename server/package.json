@@ -1,0 +1,9 @@
+{
+  "name": "angel-one-connector-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vendored server payload for the Angel One Connector MCPB bundle.",
+  "dependencies": {
+    "angel-one-mcp": "1.0.10"
+  }
+}

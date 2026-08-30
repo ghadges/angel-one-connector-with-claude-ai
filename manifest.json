@@ -1,0 +1,101 @@
+{
+  "manifest_version": "0.2",
+  "name": "angel-one",
+  "display_name": "Angel One Connector with Claude",
+  "version": "1.0.0",
+  "description": "Trading MCP — live prices, portfolio, holdings and charts from your Angel One account, in plain English.",
+  "long_description": "Connects Claude Desktop to your Angel One trading account through Angel One's official SmartAPI. Ask for live prices, your holdings and positions, historical candles, position sizing and rule-based screens by typing plain English.\n\nClaude will not place trades on your behalf. Order limits ship at 1 share and Rs 1,000 and are enforced by the server; raise them only deliberately in settings.\n\nRequires an Angel One account, a SmartAPI app with your public IP allowlisted, and TOTP enabled. Not affiliated with or endorsed by Angel One or Anthropic.",
+  "author": {
+    "name": "TryTech"
+  },
+  "icon": "icon.png",
+  "keywords": [
+    "angel-one",
+    "smartapi",
+    "trading",
+    "stock-market",
+    "nse",
+    "bse",
+    "india",
+    "portfolio"
+  ],
+  "license": "MIT",
+  "server": {
+    "type": "node",
+    "entry_point": "server/node_modules/angel-one-mcp/build/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/server/node_modules/angel-one-mcp/build/index.js"
+      ],
+      "env": {
+        "ANGEL_API_KEY": "${user_config.api_key}",
+        "ANGEL_CLIENT_ID": "${user_config.client_code}",
+        "ANGEL_PASSWORD": "${user_config.mpin}",
+        "ANGEL_TOTP_SECRET": "${user_config.totp_secret}",
+        "SOFT_MAX_ORDER_QTY": "${user_config.max_order_qty}",
+        "HARD_MAX_ORDER_QTY": "${user_config.max_order_qty}",
+        "SOFT_MAX_ORDER_VALUE": "${user_config.max_order_value}",
+        "HARD_MAX_ORDER_VALUE": "${user_config.max_order_value}"
+      }
+    }
+  },
+  "user_config": {
+    "api_key": {
+      "type": "string",
+      "title": "API Key",
+      "description": "From smartapi.angelone.in — open My Smart API & Apps and click the eye icon beside your app.",
+      "required": true,
+      "sensitive": true
+    },
+    "client_code": {
+      "type": "string",
+      "title": "Client Code",
+      "description": "Your Angel One client code, for example A123456. Found on your Angel One profile.",
+      "required": true,
+      "sensitive": false
+    },
+    "mpin": {
+      "type": "string",
+      "title": "MPIN",
+      "description": "Your Angel One MPIN — NOT your old password. Using the password here is the single most common setup failure.",
+      "required": true,
+      "sensitive": true
+    },
+    "totp_secret": {
+      "type": "string",
+      "title": "TOTP Secret",
+      "description": "The long base32 key revealed by 'Can't Scan? Copy the key' at smartapi.angelone.in/enable-totp — NOT the 6-digit code. Check for a trailing space when pasting.",
+      "required": true,
+      "sensitive": true
+    },
+    "max_order_qty": {
+      "type": "number",
+      "title": "Maximum order quantity",
+      "description": "Hard cap on the quantity of any single order. There is no dry-run mode in this server, so this cap is a real safety limit — it cannot be overridden once set. Leave at 1 unless you deliberately intend to place larger orders.",
+      "required": false,
+      "default": 1,
+      "min": 1,
+      "max": 100000
+    },
+    "max_order_value": {
+      "type": "number",
+      "title": "Maximum order value (Rs)",
+      "description": "Hard cap on the rupee value of any single order. Applies only when a price is known; market orders are capped by quantity alone. Leave at 1000 unless you deliberately intend to place larger orders.",
+      "required": false,
+      "default": 1000,
+      "min": 1,
+      "max": 100000000
+    }
+  },
+  "compatibility": {
+    "claude_desktop": ">=0.10.0",
+    "platforms": [
+      "darwin",
+      "win32"
+    ],
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  }
+}
